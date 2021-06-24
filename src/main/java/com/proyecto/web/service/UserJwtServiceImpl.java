@@ -19,7 +19,4 @@ public class UserJwtServiceImpl implements UserJwtService {
         return usuarioDao.findByUsername(username);
     }
 
-    public List<Usuario> ListarUsuario(String Usuario, String Empleado, String Estado, String PaginaStart, String PaginaLength, String Orderby){
-        return usuarioDao.ListarUsuario(Usuario,Empleado,Estado,PaginaStart,PaginaLength,Orderby);
-    }
 }

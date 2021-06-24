@@ -56,69 +56,20 @@ public class UserJwtDaoImpl implements UserJwtDao {
                             usuario.getIdempleado().getPerfil().setNivel(new Nivel());
                             usuario.getIdempleado().getPerfil().getNivel().setIdNivel(rs.getObject(11)!=null?rs.getInt(11) : null);
                             usuario.getIdempleado().getPerfil().getNivel().setDescNivel(rs.getObject(12)!=null?rs.getString(12):null);
-                            usuario.getIdempleado().setLocalidad(new Localidad());
-                            usuario.getIdempleado().getLocalidad().setIdLocalidad(rs.getObject(13)!=null?rs.getInt(13) : null);
-                            usuario.getIdempleado().getLocalidad().setDesclocalidad(rs.getObject(14)!=null?rs.getString(14) : null);
-                            usuario.getIdempleado().getLocalidad().setEmpresa(new Empresa());
-                            usuario.getIdempleado().getLocalidad().getEmpresa().setIdEmpresa(rs.getObject(15)!=null?rs.getInt(15) : null);
-                            usuario.getIdempleado().getLocalidad().getEmpresa().setDescEmpresa(rs.getObject(16)!=null?rs.getString(16) : null);
-                            usuario.getIdempleado().getLocalidad().setSede(new Sede());
-                            usuario.getIdempleado().getLocalidad().getSede().setIdSede(rs.getObject(17)!=null?rs.getInt(17) : null);
-                            usuario.getIdempleado().getLocalidad().getSede().setDescSede(rs.getObject(18)!=null?rs.getString(18) : null);
+//                            usuario.getIdempleado().setLocalidad(new Localidad());
+//                            usuario.getIdempleado().getLocalidad().setIdLocalidad(rs.getObject(13)!=null?rs.getInt(13) : null);
+//                            usuario.getIdempleado().getLocalidad().setDesclocalidad(rs.getObject(14)!=null?rs.getString(14) : null);
+//                            usuario.getIdempleado().getLocalidad().setEmpresa(new Empresa());
+//                            usuario.getIdempleado().getLocalidad().getEmpresa().setIdEmpresa(rs.getObject(15)!=null?rs.getInt(15) : null);
+//                            usuario.getIdempleado().getLocalidad().getEmpresa().setDescEmpresa(rs.getObject(16)!=null?rs.getString(16) : null);
+//                            usuario.getIdempleado().getLocalidad().setSede(new Sede());
+//                            usuario.getIdempleado().getLocalidad().getSede().setIdSede(rs.getObject(17)!=null?rs.getInt(17) : null);
+//                            usuario.getIdempleado().getLocalidad().getSede().setDescSede(rs.getObject(18)!=null?rs.getString(18) : null);
                         }
                         rs.close();
                         cst.close();
                     }
                     return usuario;
-                }catch ( Exception e) {
-                    log.debug("Ocurrio una excepcion "+e.getMessage());
-                    return null;
-                }
-            }
-        });
-    }
-
-    @Transactional(readOnly = true)
-    public List<Usuario> ListarUsuario(final String Usuario, final String Empleado, final String Estado, final String PaginaStart, final String PaginaLength, final String Orderby) {
-        return sessionFactory.getCurrentSession().doReturningWork(new ReturningWork<List<Usuario>>() {
-            public List<Usuario> execute(Connection connection) throws SQLException {
-                try {
-                    CallableStatement cst = connection.prepareCall("{ ? = call "+paqueteConfiguracion+"SQL_USUARIO(?,?,?,?,?,?,?)}");
-                    cst.registerOutParameter(1, Types.OTHER);
-                    cst.setInt(2,0);
-                    cst.setString(3,Usuario);
-                    cst.setString(4,Empleado);
-                    cst.setString(5,Estado);
-                    cst.setString(6,PaginaStart);
-                    cst.setString(7,PaginaLength);
-                    cst.setString(8,Orderby);
-                    cst.execute();
-                    List<Usuario> lista = new ArrayList<Usuario>();
-                    ResultSet rs = (ResultSet) cst.getObject(1);
-                    if (rs != null) {
-                        while (rs.next()) {
-                            Usuario obj = new Usuario();
-                            obj.setIdusuario(rs.getInt(1));
-                            obj.setUsername(rs.getString(2));
-                            obj.setPassword(rs.getString(3));
-                            obj.setEstado(rs.getBoolean(4));
-                            obj.setIdempleado(new Empleado());
-                            obj.getIdempleado().setIdEmpleado(rs.getInt(5));
-                            obj.getIdempleado().setNombre(rs.getString(6));
-                            obj.getIdempleado().setApMaterno(rs.getString(7));
-                            obj.getIdempleado().setApMaterno(rs.getString(8));
-                            obj.getIdempleado().setPerfil(new Perfil());
-                            obj.getIdempleado().getPerfil().setIdPerfil(rs.getInt(9));
-                            obj.getIdempleado().getPerfil().setDescPerfil(rs.getString(10));
-                            obj.getIdempleado().getPerfil().setNivel(new Nivel());
-                            obj.getIdempleado().getPerfil().getNivel().setIdNivel(rs.getInt(11));
-                            obj.getIdempleado().getPerfil().getNivel().setDescNivel(rs.getString(12));
-                            lista.add(obj);
-                        }
-                        rs.close();
-                        cst.close();
-                    }
-                    return lista;
                 }catch ( Exception e) {
                     log.debug("Ocurrio una excepcion "+e.getMessage());
                     return null;

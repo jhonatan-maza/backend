@@ -15,9 +15,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
-/**
- * Created by jonat on 14/03/2020.
- */
 @RestController
 @CrossOrigin(origins = {"*"})
 @RequestMapping("/app/nivel")

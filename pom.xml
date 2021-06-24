@@ -18,9 +18,11 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<project>clean-road-270813</project>
+<!--		<project>clean-road-270813</project>-->
 		<!--<jackson.version>2.9.0</jackson.version>-->
 		<java.version>1.8</java.version>
+		<maven.compiler.source>${java.version}</maven.compiler.source>
+		<maven.compiler.target>${java.version}</maven.compiler.target>
 		<hibernate.version>5.2.1.Final</hibernate.version>
 		<!--<wsdl.servicio_sunat_pruebas>http://localhost:8085/FacturaService?wsdl</wsdl.servicio_sunat_pruebas>-->
 		<!--<wsdl.servicio_sunat_produccion>http://localhost:8085/FacturaService?wsdl</wsdl.servicio_sunat_produccion>-->
@@ -431,11 +433,11 @@
 
 
 		<!--google cloud-->
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-gcp-starter</artifactId>
-			<version>1.1.3.RELEASE</version>
-		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>org.springframework.cloud</groupId>-->
+<!--			<artifactId>spring-cloud-gcp-starter</artifactId>-->
+<!--			<version>1.1.3.RELEASE</version>-->
+<!--		</dependency>-->
 
 		<!--<dependency>-->
 			<!--<groupId>org.springframework.cloud</groupId>-->
@@ -443,20 +445,32 @@
 			<!--<version>1.1.3.RELEASE</version>-->
 		<!--</dependency>-->
 
+<!--		<dependency>-->
+<!--			<groupId>org.springframework.cloud</groupId>-->
+<!--			<artifactId>spring-cloud-gcp-starter-sql-postgresql</artifactId>-->
+<!--			<version>1.1.3.RELEASE</version>-->
+<!--		</dependency>-->
+
 		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-gcp-starter-sql-postgresql</artifactId>
-			<version>1.1.3.RELEASE</version>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>2.9.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>2.9.2</version>
 		</dependency>
 
 	</dependencies>
 
 	<build>
 		<plugins>
-			<!--<plugin>-->
-				<!--<groupId>org.springframework.boot</groupId>-->
-				<!--<artifactId>spring-boot-maven-plugin</artifactId>-->
-			<!--</plugin>-->
+<!--			<plugin>-->
+<!--				<groupId>org.springframework.boot</groupId>-->
+<!--				<artifactId>spring-boot-maven-plugin</artifactId>-->
+<!--			</plugin>-->
 
 
 			<!--<plugin>-->
@@ -465,17 +479,17 @@
 				<!--<version>1.9.67</version>-->
 			<!--</plugin>-->
 
-			<plugin>
-				<groupId>com.google.cloud.tools</groupId>
-				<artifactId>appengine-maven-plugin</artifactId>
-				<version>1.3.1</version>
-				<configuration>
-					<deploy.promote>true</deploy.promote>
-					<deploy.stopPreviousVersion>true</deploy.stopPreviousVersion>
-					<deploy.project>clean-road-270813</deploy.project>
-					<deploy.version>1.0</deploy.version>
-				</configuration>
-			</plugin>
+<!--			<plugin>-->
+<!--				<groupId>com.google.cloud.tools</groupId>-->
+<!--				<artifactId>appengine-maven-plugin</artifactId>-->
+<!--				<version>1.3.1</version>-->
+<!--				<configuration>-->
+<!--					<deploy.promote>true</deploy.promote>-->
+<!--					<deploy.stopPreviousVersion>true</deploy.stopPreviousVersion>-->
+<!--					<deploy.project>clean-road-270813</deploy.project>-->
+<!--					<deploy.version>1.0</deploy.version>-->
+<!--				</configuration>-->
+<!--			</plugin>-->
 
 			<!--<plugin>-->
 				<!--<artifactId>maven-enforcer-plugin</artifactId>-->
@@ -535,22 +549,22 @@
 				<!--</executions>-->
 			<!--</plugin>-->
 
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>properties-maven-plugin</artifactId>
-				<version>1.0-alpha-2</version>
-				<executions>
-					<execution>
-						<phase>generate-resources</phase>
-						<goals>
-							<goal>write-project-properties</goal>
-						</goals>
-						<configuration>
-							<outputFile>${project.build.outputDirectory}/my.properties</outputFile>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
+<!--			<plugin>-->
+<!--				<groupId>org.codehaus.mojo</groupId>-->
+<!--				<artifactId>properties-maven-plugin</artifactId>-->
+<!--				<version>1.0-alpha-2</version>-->
+<!--				<executions>-->
+<!--					<execution>-->
+<!--						<phase>generate-resources</phase>-->
+<!--						<goals>-->
+<!--							<goal>write-project-properties</goal>-->
+<!--						</goals>-->
+<!--						<configuration>-->
+<!--							<outputFile>${project.build.outputDirectory}/my.properties</outputFile>-->
+<!--						</configuration>-->
+<!--					</execution>-->
+<!--				</executions>-->
+<!--			</plugin>-->
 
 			<!--Fin plugin facturacion electronica -->
 
@@ -579,35 +593,35 @@
 		</plugins>
 	</build>
 
-	<repositories>
-		<repository>
-			<id>spring-milestones</id>
-			<name>Spring Milestones</name>
-			<url>https://repo.spring.io/milestone</url>
-		</repository>
-		<repository>
-			<id>spring-snapshots</id>
-			<name>Spring Snapshots</name>
-			<url>https://repo.spring.io/snapshot</url>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</repository>
-	</repositories>
-	<pluginRepositories>
-		<pluginRepository>
-			<id>spring-milestones</id>
-			<name>Spring Milestones</name>
-			<url>https://repo.spring.io/milestone</url>
-		</pluginRepository>
-		<pluginRepository>
-			<id>spring-snapshots</id>
-			<name>Spring Snapshots</name>
-			<url>https://repo.spring.io/snapshot</url>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</pluginRepository>
-	</pluginRepositories>
+<!--	<repositories>-->
+<!--		<repository>-->
+<!--			<id>spring-milestones</id>-->
+<!--			<name>Spring Milestones</name>-->
+<!--			<url>https://repo.spring.io/milestone</url>-->
+<!--		</repository>-->
+<!--		<repository>-->
+<!--			<id>spring-snapshots</id>-->
+<!--			<name>Spring Snapshots</name>-->
+<!--			<url>https://repo.spring.io/snapshot</url>-->
+<!--			<snapshots>-->
+<!--				<enabled>true</enabled>-->
+<!--			</snapshots>-->
+<!--		</repository>-->
+<!--	</repositories>-->
+<!--	<pluginRepositories>-->
+<!--		<pluginRepository>-->
+<!--			<id>spring-milestones</id>-->
+<!--			<name>Spring Milestones</name>-->
+<!--			<url>https://repo.spring.io/milestone</url>-->
+<!--		</pluginRepository>-->
+<!--		<pluginRepository>-->
+<!--			<id>spring-snapshots</id>-->
+<!--			<name>Spring Snapshots</name>-->
+<!--			<url>https://repo.spring.io/snapshot</url>-->
+<!--			<snapshots>-->
+<!--				<enabled>true</enabled>-->
+<!--			</snapshots>-->
+<!--		</pluginRepository>-->
+<!--	</pluginRepositories>-->
 
 </project>

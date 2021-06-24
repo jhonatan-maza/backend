@@ -18,8 +18,6 @@ public class Nivel {
     @JsonProperty("estado")
     private String estado;
 
-    //Comentario prueba Github
-
     public Integer getIdNivel() {
         return idNivel;
     }

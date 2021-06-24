@@ -8,9 +8,6 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import java.io.IOException;
 
-/**
- * Created by jonat on 10/03/2020.
- */
 public class EncodingFilter extends GenericFilterBean {
 
     @Override

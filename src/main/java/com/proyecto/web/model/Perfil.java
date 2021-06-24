@@ -21,10 +21,8 @@ public class Perfil {
     @JsonProperty("estado")
     private String estado;
 
-    @JsonProperty("usuariosact")
     private Integer usuariosAct;
 
-    @JsonProperty("usuariosinact")
     private Integer usuariosInact;
 
     public Integer getIdPerfil() {

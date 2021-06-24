@@ -28,23 +28,5 @@ public class UsuarioController {
     @Autowired
     private UserJwtService userJwtService;
 
-    @GetMapping("/listar/{estado}/{start}/{length}/{orderby}")
-    public ResponseEntity<List<Usuario>> ListarUsuarios(@PathVariable(value = "estado") String estado,
-                                                     @PathVariable(value = "start") String pagStart,
-                                                     @PathVariable(value = "length") String pagLength,
-                                                     @PathVariable(value = "orderby") String orderBy, HttpServletRequest request) {
-        String token = request.getHeader(tokenHeader);
-        String username = jwtTokenUtil.getUsernameFromToken(token);
-        if(username != null){
-            try{
-                List<Usuario> lista = userJwtService.ListarUsuario(null,null,estado,pagStart,pagLength,orderBy);
-                return new ResponseEntity<>(lista, HttpStatus.OK);
-            }catch (Exception e){
-                return null;
-            }
-        }else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-    }
 
 }

@@ -10,6 +10,5 @@ import java.util.List;
 public interface UserJwtDao {
 
     Usuario findByUsername(String username);
-    List<Usuario> ListarUsuario(String Usuario, String Empleado, String Estado, String PaginaStart, String PaginaLength, String Orderby);
 
 }

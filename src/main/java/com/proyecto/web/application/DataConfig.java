@@ -18,9 +18,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import javax.sql.DataSource;
 import java.util.Properties;
 
-/**
- * Created by jonat on 18/08/2019.
- */
 @Configuration
 @EnableTransactionManagement
 public class DataConfig {
@@ -64,13 +61,17 @@ public class DataConfig {
 //        protected String jdbcUsername;
 //        @Value("${jdbc.password}")
 //        protected String jdbcPassword;
-        @Value("${jdbc.url}")
-        protected String jdbcUrl;
+//        @Value("${jdbc.url}")
+//        protected String jdbcUrl;
 
+        @Value("${spring.datasource.driver-class-name}")
+        protected String jdbcDriver;
         @Value("${spring.datasource.username}")
         protected String jdbcUsername;
         @Value("${spring.datasource.password}")
         protected String jdbcPassword;
+        @Value("${spring.datasource.url}")
+        protected String jdbcUrl;
 
         @Bean
         public SessionFactory sessionFactory() {
@@ -87,7 +88,7 @@ public class DataConfig {
 //                pp.setProperty("hibernate.default_schema", hibernateSchema);
                 pp.setProperty("hibernate.dialect", hibernateDialect);
                 factoryBean.setDataSource(dataSource());
-                factoryBean.setPackagesToScan("com.extranet.web.model");
+                factoryBean.setPackagesToScan("com.proyecto.web.model");
                 factoryBean.setHibernateProperties(pp);
                 factoryBean.afterPropertiesSet();
                 return factoryBean.getObject();
@@ -102,7 +103,7 @@ public class DataConfig {
         @Bean
         public DataSource dataSource() {
             BasicDataSource ds = new BasicDataSource();
-//            ds.setDriverClassName(jdbcDriver);
+            ds.setDriverClassName(jdbcDriver);
             ds.setUsername(jdbcUsername);
             ds.setPassword(jdbcPassword);
             ds.setUrl(jdbcUrl);
